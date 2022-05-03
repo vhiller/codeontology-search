@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>CodeOntology Search</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+    <div class="jumbotron d-flex align-items-center">
+
+        <main role="main" class="container">
+
+            <div>
+                <h1>CodeOntology Search</h1>
+                <hr>
+                <form th:action="@{/search}"  th:object="${input}" method="post">
+                    <div class="form-group">
+                        <label for="inputSearch">Digite algo que deseja procurar na CodeOntology.</label>
+                        <input type="text" th:field="*{term}" class="form-control" id="inputSearch">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                </form>
+                <hr>
+            </div>
+
+            <table class="table table-bordered table-sm  table-striped mt-2">
+                <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Label</th>
+                    <th>SuperType</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="l : ${list}" th:field="${l}">
+                    <td th:text="${l.subject}"></td>
+                    <td th:text="${l.label}"></td>
+                    <td th:text="${l.supertype}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+
+
+    </div>
+
+    <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
